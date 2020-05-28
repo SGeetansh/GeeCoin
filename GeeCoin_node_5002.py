@@ -106,7 +106,7 @@ def mine_block():
     previous_proof = previous_block['proof']
     proof = blockchain.proof_of_work(previous_proof)
     previous_hash = blockchain.hash(previous_block)
-    blockchain.add_transaction(sender = node_address, receiver = 'Gee', amount = 1)
+    blockchain.add_transaction(sender = node_address, receiver = 'Kirill', amount = 1)
     block = blockchain.create_block(proof, previous_hash)
     response = {'message': 'Congratulations, you just mined a block!',
                 'index': block['index'],
@@ -144,8 +144,6 @@ def add_transaction():
     response = {'message': f'This transaction will be added to Block {index}'}
     return jsonify(response), 201
 
-# Part 3 - Decentralizing our Blockchain
-
 # Connecting new nodes
 @app.route('/connect_node', methods = ['POST'])
 def connect_node():
@@ -155,7 +153,7 @@ def connect_node():
         return "No node", 400
     for node in nodes:
         blockchain.add_node(node)
-    response = {'message': 'All the nodes are now connected. The GeeCoin Blockchain now contains the following nodes:',
+    response = {'message': 'All the nodes are now connected. The Hadcoin Blockchain now contains the following nodes:',
                 'total_nodes': list(blockchain.nodes)}
     return jsonify(response), 201
 
@@ -172,4 +170,4 @@ def replace_chain():
     return jsonify(response), 200
 
 # Running the app
-app.run(host = '0.0.0.0', port = 5000)
+app.run(host = '0.0.0.0', port = 5002)
